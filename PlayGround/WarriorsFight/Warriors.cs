@@ -2,10 +2,10 @@ namespace Playground.WarriorsFight;
 
 public class Warriors
 {
-    public string Name {get;set;}
-    public float Health {get;set;}
-    public float AttackMax {get;set;}
-    public float BlockMax {get;set;}
+    public string Name {get;protected set;}
+    protected float Health {get;set;}
+    protected float AttackMax {get;set;}
+    protected float BlockMax {get;set;}
     Random rand = new Random();
     public Warriors(string name = "Warrior",
         int health = 0,
@@ -18,7 +18,14 @@ public class Warriors
         this.BlockMax = blockMax;
     }
 
-    public float Attack()
+    public float GetHealth() => this.Health;
+
+    public int ReduceHealth(float damage)
+    {
+        return (int) (this.Health -= damage);
+    }
+        
+    public virtual float Attack()
     {
        return rand.Next(1, (int) AttackMax);
     }
